@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GET</title>
+  <style>
+    #result {
+      width: 200px;
+      height: 100px;
+      border: solid 1px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="result"></div>
+</body>
+</html>
+<script>
+  const result = document.getElementById('result')
+  // 绑定键盘按下事件
+  window.onkeydown = function () {
+    const xhr = new XMLHttpRequest()
+//  初始化  添加时间戳 保证无缓存影响（IE）浏览器会有缓存
+    xhr.open('GET','http://127.0.0.1:8000/json-server'+Date.now())
+    xhr.send()
+    xhr.onreadystatechange = function () {
+      if(xhr.readyState === 4) {
+        if(xhr.status >= 200 && xhr.status <= 300) {
+          // 处理服务器返回的数据
+          console.log(xhr.response)
+          result.innerHTML = xhr.response
+        } else {
+
+        }
+      }
+      }
+    }
+</script>
