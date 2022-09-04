@@ -37,5 +37,13 @@
     }
       // 初始化
   xhr.open('GET','http://127.0.0.1:8000/delay')
+  xhr.send()
+  xhr.onreadystatechange = function () {
+    if(xhr.readyState === 4) {
+      if(xhr.status >= 200 && xhr.status <= 300) {
+        result.innerHTML = xhr.response
+      }
+    }
+    }
     }
 </script>
